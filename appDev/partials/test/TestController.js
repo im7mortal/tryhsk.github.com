@@ -98,7 +98,7 @@ tryHskControllers.controller('TestController', ['$scope', '$rootScope', 'sortWor
 			for (var i = 0; i < 4; i++) {
 				wordsTests[i].char = arr[i];
 				wordsTests[i].pinyin = '☀';
-				wordsTests[i].russian = '♞';
+				wordsTests[i].translate = '♞';
 				wordsTests[i].sound = '';  // звук птичек на звонке
 				wordsTests[i].ansver = 'primary';
 				wordsTests[i].button = 'лол!!!';
@@ -116,9 +116,9 @@ tryHskControllers.controller('TestController', ['$scope', '$rootScope', 'sortWor
 						wordsTests[i].pinyin[j].color = 'black';
 					}
 				}
-				wordsTests[i].russian = words[test_randoms[i]].russian;
+				wordsTests[i].translate = getTransate(words[test_randoms[i]]);
 				if ($scope.select === 'pron-char' || $scope.select === 'char-trans') {
-					wordsTests[i].main = words[test_randoms[i]].russian;
+					wordsTests[i].main = getTransate(words[test_randoms[i]]);
 				}
 				if ($scope.select === 'trans-char' || $scope.select === 'pron-trans') {
 					wordsTests[i].main = words[test_randoms[i]].char;
@@ -150,7 +150,7 @@ tryHskControllers.controller('TestController', ['$scope', '$rootScope', 'sortWor
 				$scope.questionStyle = {'width': 80 * data[question].char.length + 'px'};
 			}
 			$scope.char = data[question].char;
-			$scope.russian = data[question].russian;
+			$scope.translate = getTransate(data[question]);
 			switch ($scope.select) {
 				case 'char-trans':
 					$scope.charRegime = true;
@@ -196,6 +196,20 @@ tryHskControllers.controller('TestController', ['$scope', '$rootScope', 'sortWor
 			return wordsTests;
 		};
 
+		function getTransate (object) {
+			if($rootScope.content.code === 'ru') {
+				return object.russian
+			} else {
+				return object.english
+			}
+		}
+
+		$rootScope.$watch('content.code', function () {
+			score.answered = false;
+			$scope.nextShow = false;
+			$scope.nextRefresh = true;
+		}, true);
+
 		$scope.nextWord = function () {
 			score.answered = false;
 			$scope.nextShow = true;
@@ -217,7 +231,6 @@ tryHskControllers.controller('TestController', ['$scope', '$rootScope', 'sortWor
 
 function alert (newValue, oldValue) {
 	if(newValue === oldValue) return;
-	console.log($scope.select);
 	$scope.nextShow = false;
 	$scope.nextRefresh = true;
 	arr = new Array(10);

@@ -20,6 +20,7 @@ tryHskServices.service('prepareWords', ['Word', 'pinyin', function (Word, pinyin
 					object.char = words[i].c;
 					object.pinyin = pinyin.processingOfPinyin(words[i].p);
 					object.russian = words[i].r;
+					object.english = words[i].e;
 					object.sound = 'http://china-standart.ru/' + words[i].s;
 					object.mask = parseInt(words[i].i, 2);
 					object.id = i;

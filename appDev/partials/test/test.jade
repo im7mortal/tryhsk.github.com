@@ -66,7 +66,7 @@
 						button.shortcut.link.buttonSound(ng-show='soundCharRegime || soundTranslateRegime', ng-click='playSound()')
 							i.mif-volume-medium
 						button.shortcut.link.font60(ng-show='charRegime', ng-style='questionStyle', ng-click='playSound()') {{char}}
-						.russian-char.font20(ng-show='translateRegime') {{russian}}
+						.russian-char.font20(ng-show='translateRegime') {{translate}}
 				// @todo  не понятно как воспроизвести музыку юзабилити
 				.row.condensed
 					.accordion.place-center.test( id="accordion" data-role="accordion", data-closeany-any='true')
@@ -84,7 +84,7 @@
 												span(ng-show='settings.letter') {{tone.transpinyin}}
 												span(ng-show='settings.number') {{tone.number}}
 								.row.condensed.no-margin(ng-show='translateRegime || soundTranslateRegime')
-									h4 {{wordsTest.russian}}
+									h4 {{wordsTest.translate}}
 								.row.condensed.no-margin
 									button.button(ng-class='wordsTest.ansver', ng-click='nextWord()')
 										| {{wordsTest.button}}
