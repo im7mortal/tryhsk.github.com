@@ -1,5 +1,5 @@
-tryHskControllers.controller('TestController', ['$scope', '$rootScope', 'sortWords', '$timeout', 'StateManager', 'score', 'language',
-	function ($scope, $rootScope, sortWords, $timeout, StateManager, score, language) {
+tryHskControllers.controller('TestController', ['$scope', '$rootScope', 'sortWords', '$timeout', 'StateManager', 'score', 'language', '$resource',
+	function ($scope, $rootScope, sortWords, $timeout, StateManager, score, language, $resource) {
 		var question
 			, arr = []
 			, wordsTests = [
@@ -226,6 +226,18 @@ tryHskControllers.controller('TestController', ['$scope', '$rootScope', 'sortWor
 					}
 				}, 100);
 			}
+			$resource('test/', {}, {
+				query: {
+					method: 'GET',
+					params: {
+						login: 'root'
+					}
+				}
+			}).query().$promise.then(
+				function (result) {
+					console.log(result);
+				}
+			);
 		};
 
 
