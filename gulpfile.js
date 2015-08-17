@@ -12,7 +12,7 @@ gulp.task('default', [
 		'compressJS'
 		//,'compressJSON'
 		, 'compressCSS'
-		, 'test'
+		//, 'test'
 		, 'compressCSSLoader'
 	],
 	function () {
